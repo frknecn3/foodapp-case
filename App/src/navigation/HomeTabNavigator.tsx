@@ -20,8 +20,9 @@ import BasketSvg from '../assets/images/bottombaricons/sepet-pasif-svg.svg';
 import BasketActiveSvg from '../assets/images/bottombaricons/sepet-aktif-svg.svg';
 import ProfileSvg from '../assets/images/bottombaricons/Profil-pasif-svg.svg';
 import ProfileActiveSvg from '../assets/images/bottombaricons/Profil-aktif-svg.svg';
-import {Text, View} from 'react-native';
+import {Dimensions, Text, View} from 'react-native';
 import fireStore from '@react-native-firebase/firestore';
+import useOrientation from '../utils/useOrientation';
 
 const Tab = createBottomTabNavigator();
 
@@ -32,8 +33,8 @@ const HomeTabNavigator = ({navigation}) => {
 
   const [status, setStatus] = useState('');
   const [isOrdered, setIsOrdered] = useState(false);
-
   const id = useSelector((state: RootState) => state.setUserId.id);
+  const {width,height,isLandscape} = useOrientation();
 
   useEffect(() => {
     const fetchOrderStatus = async () => {
@@ -77,140 +78,150 @@ const HomeTabNavigator = ({navigation}) => {
 
   return (
     <Tab.Navigator
-      screenOptions={{
-        headerShown: false,
-        tabBarActiveTintColor: colors.tabBarActiveTint,
-        tabBarInactiveTintColor: colors.tabBarInactiveTint,
-        tabBarStyle: {
-          backgroundColor: 'white',
-          alignItems: 'center',
-          height: verticalScale(50),
+    screenOptions={{
+      headerShown: false,
+      tabBarActiveTintColor: colors.tabBarActiveTint,
+      tabBarInactiveTintColor: colors.tabBarInactiveTint,
+      tabBarStyle: {
+        backgroundColor: 'white',
+        alignItems: 'center',
+        height: verticalScale(50),
+      },
+      tabBarLabelStyle: {
+        fontSize: moderateScale(11),
+        fontWeight: '300',
+      },
+    }}>
+    <Tab.Screen
+      name={'Anasayfa'}
+      component={HomeTabScreen}
+      options={{
+        unmountOnBlur: true,
+        tabBarIcon: ({focused}) => {
+          return focused ? <HomeSvgActive /> : <HomeSvg />;
+          
         },
-        tabBarLabelStyle: {
-          fontSize: moderateScale(11),
-          fontWeight: '300',
+        tabBarLabel: ({focused}) => {
+          return (
+            <Text
+              style={{
+                color: focused ? '#66AE7B' : '#333333',
+                fontWeight: focused ? '500' : '300',
+                fontSize: moderateScale(12),
+                marginBottom: verticalScale(7),
+                marginLeft: isLandscape?10:0,
+                marginTop: isLandscape?12:0
+              }}>
+              Anasayfa
+            </Text>
+          );
         },
-      }}>
-      <Tab.Screen
-        name={'Anasayfa'}
-        component={HomeTabScreen}
-        options={{
-          unmountOnBlur: true,
-          tabBarIcon: ({focused}) => {
-            return focused ? <HomeSvgActive /> : <HomeSvg />;
-            
-          },
-          tabBarLabel: ({focused}) => {
-            return (
-              <Text
-                style={{
-                  color: focused ? '#66AE7B' : '#333333',
-                  fontWeight: focused ? '500' : '300',
-                  fontSize: moderateScale(12),
-                  marginBottom: verticalScale(7),
-                }}>
-                Anasayfa
-              </Text>
-            );
-          },
-        }}
-      />
-      <Tab.Screen
-        name={'Favorilerim'}
-        component={FavouriteTabScreen}
-        options={{
-          unmountOnBlur: true,
-          tabBarIcon: ({focused}) => {
-            return focused ? <FavsActiveSvg /> : <FavsSvg />;
-          },
-          tabBarLabel: ({focused}) => {
-            return (
-              <Text
-                style={{
-                  color: focused ? '#66AE7B' : '#333333',
-                  fontWeight: focused ? '500' : '300',
-                  fontSize: moderateScale(12),
-                  marginBottom: verticalScale(5),
-                }}>
-                Favorilerim
-              </Text>
-            );
-          },
-        }}
-      />
-      <Tab.Screen
-        name={'Keşfet'}
-        component={DiscoverTabScreen}
-        options={{
-          unmountOnBlur: true,
-          tabBarIcon: ({focused}) => {
-            return focused ? <DiscoverActiveSvg /> : <DiscoverSvg />;
-          },
-          tabBarLabel: ({focused}) => {
-            return (
-              <Text
-                style={{
-                  color: focused ? '#66AE7B' : '#333333',
-                  fontWeight: focused ? '500' : '300',
-                  fontSize: moderateScale(12),
-                  marginBottom: verticalScale(7),
-                }}>
-                Keşfet
-              </Text>
-            );
-          },
-        }}
-      />
-      <Tab.Screen
-        name={'Sepet'}
-        component={
-          confirmValue && status !== 'null' ? OrderDetailScreen : CartTabScreen
-        }
-        options={{
-          unmountOnBlur: true,
-          tabBarIcon: ({focused}) => {
-            return focused ? <BasketActiveSvg /> : <BasketSvg />;
-          },
-          tabBarStyle: {display: confirmValue ? 'flex' : 'none'},
-          tabBarLabel: ({focused}) => {
-            return (
-              <Text
-                style={{
-                  color: focused ? '#66AE7B' : '#333333',
-                  fontWeight: focused ? '500' : '300',
-                  fontSize: moderateScale(12),
-                  marginBottom: verticalScale(7),
-                }}>
-                Sepet
-              </Text>
-            );
-          },
-        }}
-      />
-      <Tab.Screen
-        name={'Profil'}
-        component={AccountTabScreen}
-        options={{
-          unmountOnBlur: true,
-          tabBarIcon: ({focused}) => {
-            return focused ? <ProfileActiveSvg /> : <ProfileSvg />;
-          },
-          tabBarLabel: ({focused}) => {
-            return (
-              <Text
-                style={{
-                  color: focused ? '#66AE7B' : '#333333',
-                  fontWeight: focused ? '500' : '300',
-                  fontSize: moderateScale(12),
-                  marginBottom: verticalScale(7),
-                }}>
-                Profil
-              </Text>
-            );
-          },
-        }}
-      />
-    </Tab.Navigator>
+      }}
+    />
+    <Tab.Screen
+      name={'Favorilerim'}
+      component={FavouriteTabScreen}
+      options={{
+        unmountOnBlur: true,
+        tabBarIcon: ({focused}) => {
+          return focused ? <FavsActiveSvg /> : <FavsSvg />;
+        },
+        tabBarLabel: ({focused}) => {
+          return (
+            <Text
+              style={{
+                color: focused ? '#66AE7B' : '#333333',
+                fontWeight: focused ? '500' : '300',
+                fontSize: moderateScale(12),
+                marginBottom: verticalScale(5),
+                marginLeft: isLandscape?10:0,
+                marginTop: isLandscape?7:0
+              }}>
+              Favorilerim
+            </Text>
+          );
+        },
+      }}
+    />
+    <Tab.Screen
+      name={'Keşfet'}
+      component={DiscoverTabScreen}
+      options={{
+        unmountOnBlur: true,
+        tabBarIcon: ({focused}) => {
+          return focused ? <DiscoverActiveSvg /> : <DiscoverSvg />;
+        },
+        tabBarLabel: ({focused}) => {
+          return (
+            <Text
+              style={{
+                color: focused ? '#66AE7B' : '#333333',
+                fontWeight: focused ? '500' : '300',
+                fontSize: moderateScale(12),
+                marginBottom: verticalScale(7),
+                marginLeft: isLandscape?10:0,
+                marginTop: isLandscape?12:0
+              }}>
+              Keşfet
+            </Text>
+          );
+        },
+      }}
+    />
+    <Tab.Screen
+      name={'Sepet'}
+      component={
+        confirmValue && status !== 'null' ? OrderDetailScreen : CartTabScreen
+      }
+      options={{
+        unmountOnBlur: true,
+        tabBarIcon: ({focused}) => {
+          return focused ? <BasketActiveSvg /> : <BasketSvg />;
+        },
+        tabBarStyle: {display: confirmValue ? 'flex' : 'none'},
+        tabBarLabel: ({focused}) => {
+          return (
+            <Text
+              style={{
+                color: focused ? '#66AE7B' : '#333333',
+                fontWeight: focused ? '500' : '300',
+                fontSize: moderateScale(12),
+                marginBottom: verticalScale(7),
+                marginLeft: isLandscape?10:0,
+                marginTop: isLandscape?12:0
+              }}>
+              Sepet
+            </Text>
+          );
+        },
+      }}
+    />
+    <Tab.Screen
+      name={'Profil'}
+      component={AccountTabScreen}
+      options={{
+        unmountOnBlur: true,
+        tabBarIcon: ({focused}) => {
+          return focused ? <ProfileActiveSvg /> : <ProfileSvg />;
+        },
+        tabBarLabel: ({focused}) => {
+          return (
+            <Text
+              style={{
+                color: focused ? '#66AE7B' : '#333333',
+                fontWeight: focused ? '500' : '300',
+                fontSize: moderateScale(12),
+                marginBottom: verticalScale(7),
+                marginLeft: isLandscape?10:0,
+                marginTop: isLandscape?12:0
+              }}>
+              Profil
+            </Text>
+          );
+        },
+      }}
+    />
+  </Tab.Navigator>
   );
 };
 

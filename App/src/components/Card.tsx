@@ -12,6 +12,7 @@ import Share, {ShareOptions} from 'react-native-share';
 import LinearGradient from 'react-native-linear-gradient';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import responsiveScale from '../utils/responsiveScale';
+import useOrientation from '../utils/useOrientation';
 
 const{scale, verticalScale, moderateScale} = responsiveScale;
 
@@ -39,6 +40,7 @@ export const Card = ({data}: Prop) => {
   const [docId, setDocId] = useState<string | null>(null);
   const [item, setItem] = useState(data);
   const [logoSource, setLogoSource] = useState();
+  const {isLandscape} = useOrientation();
 
   const colors = {
     greenColor: '#4CAF50',
@@ -188,7 +190,7 @@ export const Card = ({data}: Prop) => {
     <View
       style={[
         styles.card,
-        { width: largeCardWidth },
+        { width: isLandscape?largeCardWidth*2:largeCardWidth, height:isLandscape?250:200 },
         {
           opacity: item.lastProduct === 'Tükendi' ? 1 : 1,
           backfaceVisibility:'visible',
