@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {Dimensions, StyleSheet, View} from 'react-native';
 import {SwiperFlatList} from 'react-native-swiper-flatlist';
 import {Card} from './Card';
 import {useNavigation} from '@react-navigation/native';
@@ -9,6 +9,28 @@ import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-nativ
 import responsiveScale from '../utils/responsiveScale';
 
 const {scale, verticalScale, moderateScale} = responsiveScale;
+const {width,height} = Dimensions.get('window');
+const isHorizontal = width>height
+const styles = StyleSheet.create({
+  dots: {
+    bottom: hp('-5%'),
+    gap: moderateScale(-15),
+  },
+  dot: {
+    width: wp('1.85%'),
+    height: hp('0.95%'),
+  },
+  dotActive: {
+    width: wp('1.85%'),
+    height: hp('0.95%'),
+    backgroundColor: colors.openGreen,
+  },
+  dotInActive: {
+    borderColor: '#D0D5DD',
+    backgroundColor:'#D0D5DD'
+
+  },
+});
 export const CardSwiper = ({data}: any) => {
   const navigation = useNavigation();
 
@@ -49,25 +71,6 @@ export const CardSwiper = ({data}: any) => {
       />
     </View>
   );
+
+  
 };
-
-const styles = StyleSheet.create({
-  dots: {
-    bottom: hp('-5%'),
-    gap: moderateScale(-15),
-  },
-  dot: {
-    width: wp('1.85%'),
-    height: hp('0.95%'),
-  },
-  dotActive: {
-    width: wp('1.85%'),
-    height: hp('0.95%'),
-    backgroundColor: colors.openGreen,
-  },
-  dotInActive: {
-    borderColor: '#D0D5DD',
-    backgroundColor:'#D0D5DD'
-
-  },
-});

@@ -1,4 +1,3 @@
-// useOrientation.js
 import { useEffect, useState } from 'react';
 import { Dimensions } from 'react-native';
 
@@ -9,10 +8,10 @@ const useOrientation = () => {
     const { width, height } = Dimensions.get('window');
     console.log(width>height)
     setOrientation({
-      width,
-      height,
-      isLandscape: width > height,
-    });
+        width,
+        height,
+        isLandscape: width > height,
+      });
   };
 
   useEffect(() => {
@@ -23,7 +22,7 @@ const useOrientation = () => {
     };
   }, []);
 
-  return orientation; // Returns an object containing width, height, and isLandscape
+  return orientation;
 };
 
 export default useOrientation;
