@@ -76,7 +76,7 @@ const OrderDetailSheet = () => {
       <View style={styles.wrapper}>
         <Text style={styles.txt}>Toplam</Text>
         <Text style={styles.priceTxt}>
-        ₺ {(totalPrice - discount).toFixed(1)}
+        ₺ {(totalPrice-discount)>=0?(totalPrice-discount):'0'}
         </Text>
       </View>
       <View style={styles.btnWrapper}>
