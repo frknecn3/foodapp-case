@@ -12,6 +12,7 @@ import {BasketGreen} from '../../../assets/images';
 import Feather from 'react-native-vector-icons/Feather';
 import LinearGradient from 'react-native-linear-gradient'; // Import LinearGradient
 import responsiveScale from '../../../utils/responsiveScale';
+import useOrientation from '../../../utils/useOrientation';
 
 const {scale, verticalScale, moderateScale} = responsiveScale;
 
@@ -125,6 +126,8 @@ const DetailHeader = ({item: initialItem}: Props) => {
     }
   };
 
+  const {isLandscape} = useOrientation();
+
   const [messageToShare, setMessageToShare] = useState(
     item?.name ?? 'messageToShare',
   );
@@ -165,6 +168,81 @@ const DetailHeader = ({item: initialItem}: Props) => {
         err && console.log(err);
       });
   };
+
+  const styles = StyleSheet.create({
+    main: {
+      position: 'relative',
+      width: '100%',
+      height: verticalScale(180),
+      backgroundColor: 'white',
+    },
+    gradient: {
+      ...StyleSheet.absoluteFillObject,
+      zIndex: 1,
+    },
+    headerButtons: {
+      position: 'relative',
+      top: 0,
+      left: 0,
+      zIndex: 2, 
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      width: '100%',
+      padding: moderateScale(8),
+      marginTop: moderateScale(0),
+      marginLeft:moderateScale(10),
+      paddingEnd: moderateScale(17.5),
+    },
+    button: {
+      backgroundColor: 'white',
+      padding: moderateScale(2),
+      borderRadius: moderateScale(100),
+    },
+    icon: {
+      width: scale(15),
+      height: scale(15),
+      margin: moderateScale(4),
+    },
+    img: {
+      width: '100%',
+      height: '100%',
+      bottom: moderateScale(40),
+      resizeMode: 'cover',
+      zIndex: 0, 
+    },
+    label: {
+      position: 'relative',
+      bottom: verticalScale(30),
+      left: moderateScale(0),
+      flexDirection: 'row',
+      alignItems: 'center',
+      paddingHorizontal: moderateScale(10),
+      margin: moderateScale(10),
+      zIndex: 2, 
+    },
+    logo: {
+      bottom: moderateScale(70),
+      width: scale(35),
+      height: verticalScale(35),
+      borderRadius: moderateScale(20),
+      backgroundColor: colors.tabBarBg,
+      resizeMode: 'contain',
+    },
+    labelTxt: {
+      bottom: moderateScale(70),
+      fontSize: moderateScale(16),
+      color: 'white',
+      paddingStart: moderateScale(7.5),
+      fontWeight: '600'
+    },
+    Icon: {
+      backgroundColor: 'white',
+      padding: moderateScale(2),
+      borderRadius: 100,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+  });
 
   return (
     <View style={styles.main}>
@@ -252,77 +330,4 @@ const DetailHeader = ({item: initialItem}: Props) => {
 
 export default DetailHeader;
 
-const styles = StyleSheet.create({
-  main: {
-    position: 'relative',
-    width: '100%',
-    height: verticalScale(180),
-    backgroundColor: 'white',
-  },
-  gradient: {
-    ...StyleSheet.absoluteFillObject,
-    zIndex: 1,
-  },
-  headerButtons: {
-    position: 'relative',
-    top: 0,
-    left: 0,
-    zIndex: 2, 
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    width: '100%',
-    padding: moderateScale(8),
-    marginTop: moderateScale(0),
-    marginLeft:moderateScale(10),
-    paddingEnd: moderateScale(17.5),
-  },
-  button: {
-    backgroundColor: 'white',
-    padding: moderateScale(2),
-    borderRadius: moderateScale(100),
-  },
-  icon: {
-    width: scale(15),
-    height: scale(15),
-    margin: moderateScale(4),
-  },
-  img: {
-    width: '100%',
-    height: '100%',
-    bottom: moderateScale(40),
-    resizeMode: 'cover',
-    zIndex: 0, 
-  },
-  label: {
-    position: 'relative',
-    bottom: verticalScale(30),
-    left: moderateScale(0),
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingHorizontal: moderateScale(10),
-    margin: moderateScale(10),
-    zIndex: 2, 
-  },
-  logo: {
-    bottom: moderateScale(70),
-    width: scale(35),
-    height: verticalScale(35),
-    borderRadius: moderateScale(20),
-    backgroundColor: colors.tabBarBg,
-    resizeMode: 'contain',
-  },
-  labelTxt: {
-    bottom: moderateScale(70),
-    fontSize: moderateScale(16),
-    color: 'white',
-    paddingStart: moderateScale(7.5),
-    fontWeight: '600'
-  },
-  Icon: {
-    backgroundColor: 'white',
-    padding: moderateScale(2),
-    borderRadius: 100,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
+

@@ -89,7 +89,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: scale(1.41),
     elevation: 2,
-    height:verticalScale(67.5),
   },
   row: {
     marginTop:verticalScale(-4),

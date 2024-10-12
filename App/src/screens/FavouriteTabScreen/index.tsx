@@ -28,10 +28,13 @@ import { SearchIcon } from '../../assets/images';
 import ModalCloseGreen from '../../assets/images/bottombaricons/ModalCloseGreen.svg';
 import Input from '../../components/Input';
 import responsiveScale from '../../utils/responsiveScale';
+import useOrientation from '../../utils/useOrientation';
 
 const {scale, verticalScale, moderateScale} = responsiveScale;
 
 export default function FavouriteTabScreen() {
+
+  const {isLandscape} = useOrientation();
   const navigation = useNavigation();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [dropdown, setDropdown] = useState('');
@@ -109,6 +112,133 @@ export default function FavouriteTabScreen() {
   const [isTodaySelected, setIsTodaySelected] = useState<boolean>(false);
   const [isTomorrowSelected, setIsTomorrowSelected] = useState<boolean>(false);
 
+
+  const styles = StyleSheet.create({
+    inputContainer: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      marginTop: moderateScale(22.5),
+      marginHorizontal: scale(20),
+      justifyContent: 'space-between',
+      marginBottom: verticalScale(25),
+    },
+    filter: {
+      width: scale(38),
+      height: verticalScale(38),
+      bottom: moderateScale(8),
+    },
+    input: {
+      flex: 1,
+      alignItems: 'center',
+      backgroundColor: 'white',
+      borderRadius: moderateScale(20),
+      paddingStart: moderateScale(40),
+      padding: moderateScale(5),
+      marginEnd: moderateScale(10),
+      borderColor: '#D0D5DD',
+      borderWidth: 1,
+      fontSize: moderateScale(14),
+      color: '#333333',
+      width: '100%',
+    },
+    modalOverlay: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    },
+    modalContent: {
+      paddingLeft: moderateScale(5),
+      alignSelf: 'center',
+      width: '90%',
+      backgroundColor: 'white',
+      borderRadius: moderateScale(10),
+      padding: moderateScale(0),
+    },
+    modalHeader: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+    },
+    modalTitle: {
+      flex: 1,
+      textAlign: 'center',
+      fontSize: moderateScale(18),
+      fontWeight: '500',
+      marginBottom: verticalScale(10),
+      color: '#333333',
+    },
+    closeButton: {
+      position: 'relative',
+      right: moderateScale(45),
+    },
+    modalCloseButton: {
+      fontSize: moderateScale(24),
+      fontWeight: 'bold',
+      color: colors.greenColor,
+    },
+    row: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+    },
+    modalSectionTitle: {
+      fontSize: moderateScale(16),
+      marginTop: moderateScale(10),
+      color: colors.greenColor,
+      fontWeight: '600',
+    },
+    dropdown: {
+      borderColor: colors.greenColor,
+      margin: 0,
+      paddingLeft: moderateScale(0),
+      paddingRight: moderateScale(2),
+      borderRadius: moderateScale(15),
+      width: '28%',
+      borderWidth: 1,
+    },
+    dropdownItemText: {
+      fontSize: moderateScale(15),
+      color: '#000000',
+      textAlign: 'center',
+    },
+    dropdownItemContainer: {
+      borderBottomColor: 'lightgray',
+      borderBottomWidth: 1,
+    },
+    dropdownPlaceholder: {
+      lineHeight: verticalScale(18),
+      textAlign: 'center',
+    },
+    dropdownSelectedText: {
+      textAlign: 'center',
+      color: '#000000',
+    },
+    main: {
+      margin: moderateScale(20),
+      padding: moderateScale(10),
+      alignItems: 'center',
+      justifyContent: 'space-around',
+    },
+    txt: {
+      fontSize: moderateScale(16),
+      padding: moderateScale(20),
+      letterSpacing: moderateScale(1),
+      textAlign: 'center',
+      color: '#333333',
+      fontWeight: '600',
+      width: '100%',
+      marginTop: moderateScale(50),
+    },
+    logo: {
+      width: scale(120),
+      height: verticalScale(160),
+      right: moderateScale(7.5),
+    },
+  });
+
+
+
   return (
     <View style={{height: '100%', width: '100%', flex: 1}}>
       <View
@@ -123,17 +253,17 @@ export default function FavouriteTabScreen() {
           style={{flex: 1, width: '100%'}}>
           <Header title="Favorilerim" noBackButton={true} />
           <View style={styles.inputContainer}>
-            <View style={{flex:8,justifyContent:'center',paddingBottom:verticalScale(7.5),marginRight:moderateScale(5)}}>
+            <View style={{flex:7,justifyContent:'center',paddingBottom:verticalScale(7.5),marginRight:moderateScale(5)}}>
               <Input
                 isSearchBar={true}
                 icon={SearchIcon}
                 iconStyle={{width:moderateScale(20),height:verticalScale(20),marginStart: moderateScale(5),marginEnd: moderateScale(7.5)}}
                 placeholder='Ara...'
-                style={{width:'100%',alignItems:'center',justifyContent:'center',height:verticalScale(33),color:'black',}}
+                style={{width:isLandscape?'70%':'20%',alignItems:'center',justifyContent:'center',height:verticalScale(33),color:'black',}}
                 placeholderTextColor={'gray'}
               />
             </View>
-            <View style={{flex:1}}>
+            <View style={{flex:1,display:'flex',justifyContent:'center',alignItems:'center', paddingTop:19,paddingRight:5}}>
             <TouchableOpacity onPress={() => showActionSheet()}>
               <Image style={styles.filter} source={filterIcon} />
             </TouchableOpacity>
@@ -597,126 +727,3 @@ export default function FavouriteTabScreen() {
   );
 }
 
-const styles = StyleSheet.create({
-  inputContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginTop: moderateScale(22.5),
-    marginHorizontal: scale(20),
-    justifyContent: 'space-between',
-    marginBottom: verticalScale(25),
-  },
-  filter: {
-    width: scale(38),
-    height: verticalScale(38),
-    bottom: moderateScale(8),
-  },
-  input: {
-    flex: 1,
-    alignItems: 'center',
-    backgroundColor: 'white',
-    borderRadius: moderateScale(20),
-    paddingStart: moderateScale(40),
-    padding: moderateScale(5),
-    marginEnd: moderateScale(10),
-    borderColor: '#D0D5DD',
-    borderWidth: 1,
-    fontSize: moderateScale(14),
-    color: '#333333',
-    width: '100%',
-  },
-  modalOverlay: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-  },
-  modalContent: {
-    paddingLeft: moderateScale(5),
-    alignSelf: 'center',
-    width: '90%',
-    backgroundColor: 'white',
-    borderRadius: moderateScale(10),
-    padding: moderateScale(0),
-  },
-  modalHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  modalTitle: {
-    flex: 1,
-    textAlign: 'center',
-    fontSize: moderateScale(18),
-    fontWeight: '500',
-    marginBottom: verticalScale(10),
-    color: '#333333',
-  },
-  closeButton: {
-    position: 'relative',
-    right: moderateScale(45),
-  },
-  modalCloseButton: {
-    fontSize: moderateScale(24),
-    fontWeight: 'bold',
-    color: colors.greenColor,
-  },
-  row: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  modalSectionTitle: {
-    fontSize: moderateScale(16),
-    marginTop: moderateScale(10),
-    color: colors.greenColor,
-    fontWeight: '600',
-  },
-  dropdown: {
-    borderColor: colors.greenColor,
-    margin: 0,
-    paddingLeft: moderateScale(0),
-    paddingRight: moderateScale(2),
-    borderRadius: moderateScale(15),
-    width: '28%',
-    borderWidth: 1,
-  },
-  dropdownItemText: {
-    fontSize: moderateScale(15),
-    color: '#000000',
-    textAlign: 'center',
-  },
-  dropdownItemContainer: {
-    borderBottomColor: 'lightgray',
-    borderBottomWidth: 1,
-  },
-  dropdownPlaceholder: {
-    lineHeight: verticalScale(18),
-    textAlign: 'center',
-  },
-  dropdownSelectedText: {
-    textAlign: 'center',
-    color: '#000000',
-  },
-  main: {
-    margin: moderateScale(20),
-    padding: moderateScale(10),
-    alignItems: 'center',
-    justifyContent: 'space-around',
-  },
-  txt: {
-    fontSize: moderateScale(16),
-    padding: moderateScale(20),
-    letterSpacing: moderateScale(1),
-    textAlign: 'center',
-    color: '#333333',
-    fontWeight: '600',
-    width: '100%',
-    marginTop: moderateScale(50),
-  },
-  logo: {
-    width: scale(120),
-    height: verticalScale(160),
-    right: moderateScale(7.5),
-  },
-});

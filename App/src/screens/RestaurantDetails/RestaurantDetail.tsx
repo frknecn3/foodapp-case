@@ -9,6 +9,7 @@ import {RouteProp} from '@react-navigation/native';
 import {RootStackParamList} from '../../navigation/routes';
 import {useDispatch} from 'react-redux';
 import {setOrderDetail} from '../../store/slices/orderDetail';
+import useOrientation from '../../utils/useOrientation';
 
 type RestaruantDetailProp = RouteProp<RootStackParamList, 'RestaurantDetail'>;
 
@@ -25,10 +26,15 @@ const RestaurantDetail = ({route}: Props) => {
     dispatch(setOrderDetail('null'));
   }, []);
 
+  const {isLandscape} = useOrientation();
+
+  0
+
   return (
     <View style={{flex: 1, backgroundColor: 'white'}}>
-      <DetailHeader item={item} />
+      {!isLandscape&&<DetailHeader item={item} />}
       <ScrollView showsVerticalScrollIndicator={false}>
+      {isLandscape&&<DetailHeader item={item} />}
         <RestaurantInfoContainer
           time={item?.time}
           rate={item?.rate}
