@@ -17,7 +17,7 @@ function App(): React.JSX.Element {
     // Set a timeout to unlock orientation after 3 seconds (adjust as needed)
     const timeoutId = setTimeout(() => {
       Orientation.unlockAllOrientations(); // Allow switching to landscape mode
-    }, 100); // Timeout duration in milliseconds
+    }, 1000); // Timeout duration in milliseconds
 
     // Cleanup function
     return () => {
