@@ -34,7 +34,7 @@ const HeaderSection = ({showActionSheet} : HeaderSectionProps) => {
           <IOSIcons name="search-outline" size={wp('5.5%')} color={colors.openGreen}/>
 
           </View>
-      <TextInput style={{color:'black',width: wp('65%'),height:hp('4.425%'),top:moderateScale(2)}}
+      <TextInput style={{color:'black',width: wp('65%'),height:hp('8.425%'),top:moderateScale(2)}}
       onChangeText={text => setSearchText(text)}
       onChange={() => {showActionSheet}}
       placeholder='Ara...'

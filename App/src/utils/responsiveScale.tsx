@@ -12,7 +12,7 @@ const scale = size => (width / baseWidth) * size;
 
 const verticalScale = size => (height / baseHeight) * size;
 
-const moderateScale = (size, factor = 0.5) => {
+const moderateScale = (size, factor = 0.1) => {
     const scalingFactor = (width / baseWidth) * (pixelDensity / basePixelDensity);
     return size + (scale(size) - size) * factor * scalingFactor;}
 export default {scale, verticalScale, moderateScale};

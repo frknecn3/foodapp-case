@@ -257,7 +257,7 @@ export default function FavouriteTabScreen() {
             <View style={{flex:7,justifyContent:'center',paddingBottom:verticalScale(7.5),marginRight:moderateScale(5)}}>
               <Input
                 isSearchBar={true}
-                iconStyle={{width:moderateScale(15),height:verticalScale(15),marginStart: moderateScale(5),marginEnd: moderateScale(7.5),padding:moderateScale(3)}}
+                iconStyle={{width:moderateScale(15),height:verticalScale(25),marginStart: moderateScale(5),marginEnd: moderateScale(7.5),padding:moderateScale(13)}}
                 placeholder='Ara...'
                 style={{width:isLandscape?'70%':'20%',alignItems:'center',justifyContent:'center',height:verticalScale(33),color:'black',}}
                 placeholderTextColor={'gray'}
