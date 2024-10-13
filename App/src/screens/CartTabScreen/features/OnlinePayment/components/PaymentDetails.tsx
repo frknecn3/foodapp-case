@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   View,
   Modal,
+  ScrollView,
 } from 'react-native';
 import React, {useState} from 'react';
 import OrderSummary from './OrderSummary';
@@ -99,7 +100,7 @@ const PaymentDetails = ({item}: Prop) => {
   };
 
   return (
-    <View style={styles.main}>
+    <ScrollView>
       <View>
         <View style={styles.container}>
           <View style={{paddingHorizontal: moderateScale(10)}}>
@@ -349,7 +350,7 @@ const PaymentDetails = ({item}: Prop) => {
           </View>
         </View>
       </Modal>
-    </View>
+    </ScrollView>
   );
 };
 

@@ -68,6 +68,7 @@ export default function HomeTabScreen() {
       setAddress(updatedAdress);
     console.log(`newAdress ${updatedAdress}`)
     setAddress(updatedAdress)
+    AsyncStorage.setItem('address',updatedAdress)
     }
     else{
       throw new Error("no Adress")
@@ -416,7 +417,7 @@ export default function HomeTabScreen() {
                   onChangeText={setSearchText}
             />
               </View>
-              <View style={{bottom:moderateScale(20)}}>
+              <View style={{bottom:moderateScale(10)}}>
               <TouchableOpacity style={{marginBottom:moderateScale(0)}}
               onPress={
                 handleButtonClick}>

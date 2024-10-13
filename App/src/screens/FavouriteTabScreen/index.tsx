@@ -123,9 +123,10 @@ export default function FavouriteTabScreen() {
       marginBottom: verticalScale(25),
     },
     filter: {
-      width: scale(38),
+      width: scale(30),
       height: verticalScale(38),
       bottom: moderateScale(8),
+      padding:moderateScale(3)
     },
     input: {
       flex: 1,
@@ -256,8 +257,7 @@ export default function FavouriteTabScreen() {
             <View style={{flex:7,justifyContent:'center',paddingBottom:verticalScale(7.5),marginRight:moderateScale(5)}}>
               <Input
                 isSearchBar={true}
-                icon={SearchIcon}
-                iconStyle={{width:moderateScale(20),height:verticalScale(20),marginStart: moderateScale(5),marginEnd: moderateScale(7.5)}}
+                iconStyle={{width:moderateScale(15),height:verticalScale(15),marginStart: moderateScale(5),marginEnd: moderateScale(7.5),padding:moderateScale(3)}}
                 placeholder='Ara...'
                 style={{width:isLandscape?'70%':'20%',alignItems:'center',justifyContent:'center',height:verticalScale(33),color:'black',}}
                 placeholderTextColor={'gray'}

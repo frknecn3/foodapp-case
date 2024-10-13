@@ -165,6 +165,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: scale(1.41),
     elevation: 2,
-    height: verticalScale(52.5),
+    height: verticalScale(70.5),
   },
 });

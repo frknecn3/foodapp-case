@@ -105,7 +105,7 @@ function AuthScreen() {
       case 0:
         return (
           <>
-          <View style={{height:hp('81.5%')}}>
+          <ScrollView style={{height:hp('90.5%'),width:wp('100%')}}>
             <View
               style={{
                 marginTop: moderateScale(-12),
@@ -223,6 +223,7 @@ function AuthScreen() {
                 <Image source={More} style={{height: moderateScale(10.5), width: moderateScale(7),}} />
               </Pressable>
             </View>
+
             <View style={{width: wp('100%'), paddingHorizontal: moderateScale(21), marginTop: moderateScale(20)}}>
               <Text style={{fontSize: moderateScale(14.5), color: '#000000', fontWeight: '500'}}>
                 İsteğe Bağlı Çerezler
@@ -358,7 +359,7 @@ function AuthScreen() {
 
             <View style={{height: moderateScale(10)}} />
             </View>
-            </View>
+            </ScrollView>
           </>
           
         );
