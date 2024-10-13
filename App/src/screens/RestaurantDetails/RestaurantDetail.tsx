@@ -28,8 +28,6 @@ const RestaurantDetail = ({route}: Props) => {
 
   const {isLandscape} = useOrientation();
 
-  0
-
   return (
     <View style={{flex: 1, backgroundColor: 'white'}}>
       {!isLandscape&&<DetailHeader item={item} />}

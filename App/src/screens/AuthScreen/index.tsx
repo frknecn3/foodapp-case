@@ -20,6 +20,7 @@ import More from '../../assets/images/more_icon.png';
 import ModalCloseGreen from '../../assets/images/bottombaricons/ModalCloseGreen.svg';
 import responsiveScale from '../../utils/responsiveScale';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import useOrientation from '../../utils/useOrientation';
 
 const {scale, moderateScale, verticalScale} = responsiveScale;
 
@@ -28,6 +29,7 @@ function AuthScreen() {
 
   const [isFirstSelected, setIsFirstSelected] = useState<boolean>(false);
   const [isSecondSelected, setIsSecondSelected] = useState<boolean>(false);
+  const il = useOrientation().isLandscape
 
   const actionSheetRef = useRef<ActionSheetRef>(null);
   const cookiesSheetRef = useRef<ActionSheetRef>(null);
@@ -639,6 +641,61 @@ function AuthScreen() {
     }
   };
 
+  
+
+  const styles = StyleSheet.create({
+    main: {
+      justifyContent: 'space-evenly',
+      alignItems: 'center',
+      padding: moderateScale(20),
+      flex: 1,
+      backgroundColor: 'white',
+    },
+    imageStyle:{
+      resizeMode:"contain",
+      height:il?hp('16%'):hp('33%'),
+      marginBottom: verticalScale(50),
+    },
+    imageContainer: {
+      flex:il?0:2.8,
+      justifyContent:il?'flex-start':'flex-start',
+      alignItems:il?'flex-start':'center',
+      marginTop: il?verticalScale(0):verticalScale(100),
+    },
+    btnContainer: {
+      alignItems: 'center',
+      justifyContent: 'flex-end',
+      width: wp('89%'),
+      display: 'flex',
+      gap: moderateScale(11),
+      marginHorizontal: moderateScale(20),
+      flex:0.405,
+    },
+    checkboxes: {
+      display: 'flex',
+      gap: moderateScale(8),
+      paddingHorizontal: moderateScale(35),
+      borderColor: 'black',
+      width: '100%',
+      flex:1,
+      justifyContent:'flex-end',
+      marginBottom: verticalScale(5),
+    },
+    banner: {
+      width: '95%',
+    },
+    policies: {
+      textDecorationLine: 'underline',
+      color: '#66AE7B',
+      fontWeight:'300',
+      top:moderateScale(2.5),
+    },
+    contentContainer: {
+      flex: 1,
+      alignItems: 'center',
+    },
+  });
+
   return (
     <View style={styles.main}>
       <View style={styles.imageContainer}>
@@ -857,55 +914,4 @@ function AuthScreen() {
 
 export default AuthScreen;
 
-const styles = StyleSheet.create({
-  main: {
-    justifyContent: 'space-evenly',
-    alignItems: 'center',
-    padding: moderateScale(20),
-    flex: 1,
-    backgroundColor: 'white',
-  },
-  imageStyle:{
-    resizeMode:"contain",
-    height:hp('33%'),
-    marginBottom: verticalScale(75),
-  },
-  imageContainer: {
-    flex:2.8,
-    justifyContent:'center',
-    alignItems:'center',
-    marginTop: verticalScale(100),
-  },
-  btnContainer: {
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    width: wp('89%'),
-    display: 'flex',
-    gap: moderateScale(11),
-    marginHorizontal: moderateScale(20),
-    flex:0.405,
-  },
-  checkboxes: {
-    display: 'flex',
-    gap: moderateScale(8),
-    paddingHorizontal: moderateScale(35),
-    borderColor: 'black',
-    width: '100%',
-    flex:0.775,
-    justifyContent:'flex-end',
-    marginBottom: verticalScale(5),
-  },
-  banner: {
-    width: '95%',
-  },
-  policies: {
-    textDecorationLine: 'underline',
-    color: '#66AE7B',
-    fontWeight:'300',
-    top:moderateScale(2.5),
-  },
-  contentContainer: {
-    flex: 1,
-    alignItems: 'center',
-  },
-});
+
