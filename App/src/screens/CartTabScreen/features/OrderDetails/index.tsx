@@ -9,6 +9,7 @@ import {useSelector} from 'react-redux';
 import {RootState} from '../../../../store/store';
 import fireStore from '@react-native-firebase/firestore';
 import Header from '../../../../components/Header';
+import { ScrollView } from 'react-native-gesture-handler';
 
 export default function OrderDetailScreen() {
   const [status, setStatus] = useState('');
@@ -62,11 +63,7 @@ export default function OrderDetailScreen() {
   }, [id, status]);
 
   return (
-    <View
-      style={{
-        flex: 1,
-        backgroundColor: 'white',
-      }}>
+    <ScrollView>
       <Header title={'Sipariş Detayı'}/>
       <StepProgress />
       {status == 'PreparingOrder' ? (
@@ -76,6 +73,6 @@ export default function OrderDetailScreen() {
       ) : status == 'OrderDelivered' ? (
         <OrderDelivered />
       ) : null}
-    </View>
+    </ScrollView>
   );
 }

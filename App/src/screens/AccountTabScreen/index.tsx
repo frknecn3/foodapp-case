@@ -70,7 +70,7 @@ export default function AccountTabScreen() {
   };
 
   return (
-    <View style={{flex: 1, backgroundColor: 'white'}}>
+    <View style={{flex: 1, backgroundColor: 'white', paddingBottom:moderateScale(45)}}>
       <Header title="Profilim" noBackButton={true} />
       <View>
         <FlatList

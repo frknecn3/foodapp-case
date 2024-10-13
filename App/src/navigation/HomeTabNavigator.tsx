@@ -108,9 +108,8 @@ const HomeTabNavigator = ({navigation}) => {
                 color: focused ? '#66AE7B' : '#333333',
                 fontWeight: focused ? '500' : '300',
                 fontSize: moderateScale(12),
-                marginBottom: verticalScale(7),
-                marginLeft: isLandscape?10:0,
-                marginTop: isLandscape?12:0
+                marginLeft: isLandscape?10:15,
+                marginTop: isLandscape?7:5
               }}>
               Anasayfa
             </Text>
@@ -133,9 +132,8 @@ const HomeTabNavigator = ({navigation}) => {
                 color: focused ? '#66AE7B' : '#333333',
                 fontWeight: focused ? '500' : '300',
                 fontSize: moderateScale(12),
-                marginBottom: verticalScale(5),
-                marginLeft: isLandscape?10:0,
-                marginTop: isLandscape?7:0
+                marginLeft: isLandscape?10:15,
+                marginTop: isLandscape?7:5
               }}>
               Favorilerim
             </Text>
@@ -158,9 +156,8 @@ const HomeTabNavigator = ({navigation}) => {
                 color: focused ? '#66AE7B' : '#333333',
                 fontWeight: focused ? '500' : '300',
                 fontSize: moderateScale(12),
-                marginBottom: verticalScale(7),
-                marginLeft: isLandscape?10:0,
-                marginTop: isLandscape?12:0
+                marginLeft: isLandscape?10:15,
+                marginTop: isLandscape?7:5
               }}>
               Keşfet
             </Text>
@@ -186,9 +183,8 @@ const HomeTabNavigator = ({navigation}) => {
                 color: focused ? '#66AE7B' : '#333333',
                 fontWeight: focused ? '500' : '300',
                 fontSize: moderateScale(12),
-                marginBottom: verticalScale(7),
-                marginLeft: isLandscape?10:0,
-                marginTop: isLandscape?12:0
+                marginLeft: isLandscape?10:15,
+                marginTop: isLandscape?7:5
               }}>
               Sepet
             </Text>
@@ -211,9 +207,8 @@ const HomeTabNavigator = ({navigation}) => {
                 color: focused ? '#66AE7B' : '#333333',
                 fontWeight: focused ? '500' : '300',
                 fontSize: moderateScale(12),
-                marginBottom: verticalScale(7),
-                marginLeft: isLandscape?10:0,
-                marginTop: isLandscape?12:0
+                marginLeft: isLandscape?10:15,
+                marginTop: isLandscape?7:5
               }}>
               Profil
             </Text>

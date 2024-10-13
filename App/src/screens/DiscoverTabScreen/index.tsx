@@ -39,6 +39,7 @@ import ListView from './components/ListView';
 import MapViewSection from './components/MapViewSection';
 import DaySelectionModal from './components/DaySelectionModal';
 import FilterModal from './components/FilterModal';
+import useOrientation from '../../utils/useOrientation';
 
 const daysOfWeek = [
   'Pazartesi',
@@ -64,6 +65,8 @@ export default function HomeTabScreen() {
   const filterSheetRef = useRef<ActionSheetRef>(null);
 
   const navigation = useNavigation();
+
+  const {isLandscape} = useOrientation();
 
   function showActionSheet() {
     filterSheetRef.current?.show();
@@ -98,6 +101,25 @@ export default function HomeTabScreen() {
 
   const fullHeight = useWindowDimensions().height;
 
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: 'transparent', // Ensure the background is transparent to see the map
+    },
+    fixedHeader: {
+      position: 'relative',
+      top: verticalScale(0),
+      left: 0,
+      right: 0,
+      marginBottom:verticalScale(0),
+      height:hp('15%'),
+      zIndex: 100, // Ensures header and other components are above the map
+      paddingHorizontal: moderateScale(10),
+      backfaceVisibility:'visible',
+      
+    },
+  });
+
   return (
    
       <View style={{backgroundColor: 'white',flex:1}}>
@@ -105,19 +127,21 @@ export default function HomeTabScreen() {
             <Header title={'Keşfet'} noBackButton={false} />
           </View>
         
-          <View style={styles.fixedHeader}>
-
-          <HeaderSection/>
-          <View style={[{flexDirection:'row',justifyContent:'space-between',height: verticalScale(32)}]}>
-             <TabMenu activeTab={activeTab} setActiveTab={setActiveTab}/>
-          <SwitchComponent isEnabled={isEnabled} toggleSwitch={toggleSwitch}/>
+          {
+            isLandscape&&
+            <View style={styles.fixedHeader}>
+            <HeaderSection/>
+            <View style={[{flexDirection:'row',justifyContent:'space-between',height: verticalScale(32)}]}>
+              <TabMenu activeTab={activeTab} setActiveTab={setActiveTab}/>
+              <SwitchComponent isEnabled={isEnabled} toggleSwitch={toggleSwitch}/>
+            </View>
           </View>
-          </View>
+          }
 
          
           {activeTab === 'liste' ? (
              
-            <ListView cardItems={cardItems} navigation={navigation}/> 
+             !isLandscape&&<ListView cardItems={cardItems} navigation={navigation}/> 
             
           ):(
             <MapViewSection cardItems={cardItems} fullHeight={fullHeight} activeTab={activeTab}/>
@@ -144,22 +168,4 @@ export default function HomeTabScreen() {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'transparent', // Ensure the background is transparent to see the map
-  },
-  fixedHeader: {
-    position: 'relative',
-    top: verticalScale(0),
-    left: 0,
-    right: 0,
-    marginBottom:verticalScale(0),
-    height:hp('15%'),
-    zIndex: 100, // Ensures header and other components are above the map
-    paddingHorizontal: moderateScale(10),
-    backfaceVisibility:'visible',
-    backgroundColor:'white',
-    
-  },
-});
+
