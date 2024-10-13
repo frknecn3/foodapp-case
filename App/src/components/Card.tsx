@@ -477,7 +477,7 @@ const styles = StyleSheet.create({
   },
   favoriteIcon: {
     width: wp('7%'), // Approximately 18.5 px
-    height: hp('3.5%'), // Approximately 17.75 px
+    height: hp('5%'), // Approximately 17.75 px
     backgroundColor: 'white',
     padding: wp('1.2%'), // Approximately 4.8 px
     borderRadius: wp('12.5%'), // Approximately 100 px
@@ -544,5 +544,6 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: wp('4.2%'), // Approximately 15 px
     top: 0,
+    height:hp('15%')
   },
 });
