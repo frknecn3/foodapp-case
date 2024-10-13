@@ -22,13 +22,14 @@ export const LocationInput = (props: LocationInputType) => {
 
   const styles = StyleSheet.create({
     root: {
+      flex:1,
       backgroundColor: colors.splashtext,
       alignItems: 'center',
       textAlign: 'center',
   
     },
     allInput: {
-      width: wp(isLandscape?'185%':'105%'),
+      width:'100%',
       backgroundColor: colors.splashtext,
       borderTopWidth: moderateScale(1),
       borderBottomWidth: moderateScale(0.75),

@@ -112,7 +112,7 @@ export default function HomeTabScreen() {
       left: 0,
       right: 0,
       marginBottom:verticalScale(0),
-      height:hp('15%'),
+      height:hp('10%'),
       zIndex: 100, // Ensures header and other components are above the map
       paddingHorizontal: moderateScale(10),
       backfaceVisibility:'visible',
@@ -123,15 +123,14 @@ export default function HomeTabScreen() {
   return (
    
       <View style={{backgroundColor: 'white',flex:1}}>
-        <View>
+          <View>
             <Header title={'Keşfet'} noBackButton={false} />
           </View>
         
           {
-            isLandscape&&
-            <View style={styles.fixedHeader}>
+          <View style={styles.fixedHeader}>
             <HeaderSection/>
-            <View style={[{flexDirection:'row',justifyContent:'space-between',height: verticalScale(32)}]}>
+            <View style={[{flexDirection:'row',justifyContent:'space-between',height: verticalScale(12)}]}>
               <TabMenu activeTab={activeTab} setActiveTab={setActiveTab}/>
               <SwitchComponent isEnabled={isEnabled} toggleSwitch={toggleSwitch}/>
             </View>
@@ -141,7 +140,7 @@ export default function HomeTabScreen() {
          
           {activeTab === 'liste' ? (
              
-             !isLandscape&&<ListView cardItems={cardItems} navigation={navigation}/> 
+            <ListView cardItems={cardItems} navigation={navigation}/> 
             
           ):(
             <MapViewSection cardItems={cardItems} fullHeight={fullHeight} activeTab={activeTab}/>

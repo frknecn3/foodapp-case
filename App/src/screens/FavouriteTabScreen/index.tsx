@@ -9,6 +9,7 @@ import {
   Modal,
   TouchableOpacity,
   RefreshControl,
+  SafeAreaView,
 } from 'react-native';
 import Header from '../../components/Header';
 import Card from '../../components/Card';
@@ -272,8 +273,9 @@ export default function FavouriteTabScreen() {
 
           <View>
             {items && items.length != 0 ? (
-              <FlatList
-                style={{marginTop: moderateScale(-22.5)}}
+              <SafeAreaView>
+                <FlatList
+                style={{marginTop: moderateScale(-22.5),paddingHorizontal:moderateScale(30)}}
                 data={items}
                 scrollEnabled={false}
                 renderItem={renderItems}
@@ -287,6 +289,7 @@ export default function FavouriteTabScreen() {
                 }
                 ItemSeparatorComponent={() => <View style={{height: verticalScale(10)}} />}
               />
+              </SafeAreaView>
             ) : (
               <View style={styles.main}>
                 <Image

@@ -19,8 +19,7 @@ const HeaderSection = ({showActionSheet} : HeaderSectionProps) => {
     return (
       <View style={{flexDirection:'row',
       marginStart:moderateScale(10),
-      marginTop: verticalScale(20),
-      marginBottom: verticalScale(17.5),
+      marginBottom: verticalScale(3.5),
       alignItems:'center',
       borderColor:'#D0D5DD',
         borderWidth:0.5,

@@ -456,7 +456,7 @@ export default function HomeTabScreen() {
           icon={SearchIcon}
           iconStyle={{width:moderateScale(20),height:verticalScale(20),marginStart: moderateScale(5),marginEnd: moderateScale(5)}}
           placeholder='Ara...'
-          style={{width:scale(280),alignItems:'center',justifyContent:'center',height:verticalScale(32),color:'black',marginStart:moderateScale(7.5)}}
+          style={{flex:1,alignItems:'center',justifyContent:'center',height:verticalScale(32),color:'black'}}
           placeholderTextColor={'gray'}
           value={searchQuery}
         />
@@ -717,9 +717,8 @@ const styles = StyleSheet.create({
   inputView: {
     justifyContent:'center',
     marginBottom: verticalScale(5),
-    width: moderateScale(335),
+    flex:1,
     alignItems:'center',
-    marginStart: moderateScale(21),
     marginTop: moderateScale(5),
   },
   modal: {
