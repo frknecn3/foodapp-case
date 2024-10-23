@@ -75,7 +75,7 @@ const OrderSummary = () => {
         <View style={styles.wrapper}>
           <Text style={styles.labelTxt}>Toplam</Text>
           <Text style={styles.priceTxt}>
-            ₺ {(totalPrice-discount)>=0?(totalPrice-discount):'0'}
+            ₺ {((totalPrice-discount)>=0?(totalPrice-discount):0).toFixed(1).toString()}
           </Text>
           {/* TotalPrice - Discount */}
         </View>

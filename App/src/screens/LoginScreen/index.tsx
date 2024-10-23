@@ -181,7 +181,7 @@ function LoginScreen() {
                   }}>
                   <IOSIcons
                     name={isVisible ? 'eye-off-outline' : 'eye-outline'}
-                    size={moderateScale(16)}
+                    size={moderateScale(0)}
                     style={styles.icon}
                   />
                 </TouchableOpacity>

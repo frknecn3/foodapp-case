@@ -54,6 +54,18 @@ const Label = ({rate}: Props) => {
 
   return (
     <View style={styles.main}>
+        <Text
+            style={{
+              fontSize: moderateScale(16),
+              color: '#333333',
+              fontWeight: '500',
+              marginStart:moderateScale(20),
+              marginTop: moderateScale(20),
+              marginBottom: moderateScale(7.5),
+              zIndex: 999,
+            }}>
+              Başkaları ne diyor?
+            </Text>
       <View
         style={{
           backgroundColor: 'white',
@@ -71,18 +83,7 @@ const Label = ({rate}: Props) => {
             alignItems:'center'
           }}>
             <View style={{flexDirection:'column'}}>
-            <Text
-            style={{
-              fontSize: moderateScale(16),
-              color: '#333333',
-              fontWeight: '500',
-              marginEnd: moderateScale(10),
-              marginTop: moderateScale(5),
-              marginBottom: moderateScale(7.5),
-              zIndex: 999,
-            }}>
-            Başkaları ne diyor?
-          </Text>
+
           <View style={[styles.rateWrapper]}>
             <View style={[styles.row]}>
               <Icon name={'star'} size={scale(25)} color={colors.greenColor} style={{marginLeft:moderateScale(-2.5)}}/>
